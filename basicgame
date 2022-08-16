@@ -1,0 +1,57 @@
+import random
+import requests
+import json
+
+def get_pokemon():
+    my_card = random.randint(1,151) #get a random number for my card
+    url = 'https://pokeapi.co/api/v2/pokemon/{}/'.format(my_card)
+    
+    response = requests.get(url) 
+    pokemon = response.json()
+      
+    return {
+        'name': pokemon['name'],
+        'id': pokemon['id'],
+        'height': pokemon['height'],
+        'weight': pokemon['weight'],
+        'abilities' : pokemon['abilities'],
+            }
+
+def game_run():
+    player1 = get_pokemon()
+    print(player1['name'])
+    print('vs')
+    player2 = get_pokemon()
+    print(player2['name'])
+    
+    category = input('Choose your game_stat (id, height or weight): ')
+    
+    if category == "height":
+        if player1['height'] > player2['height']:
+            print("You win the round!")
+        elif player1['height'] < player2['height']:
+             print('You lose the round!')
+        elif player1['height'] == player2['height']:
+             print('You draw! Play again')
+  
+    elif category == 'weight':
+        if player1['weight'] > player2['weight']:
+            print('You win!')
+        elif player1['weight'] < player2['weight']:
+             print('You lose!')
+        elif player1['weight'] == player2['weight']:
+             print('You draw! Play again')
+
+    elif category == 'id':
+        if player1['id'] > player2['id']:
+         print('You win!')
+        elif player1['id'] < player2['id']:
+         print('You lose!')
+        elif player1['id'] == player2['id']:
+         print('You draw! Play again')         
+        else:
+         print('error! try again') #do we need this?
+    else:
+     print('please select correct category option!')
+    
+game_run()
