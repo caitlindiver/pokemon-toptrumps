@@ -19,39 +19,52 @@ def get_pokemon():
 
 def game_run():
     player1 = get_pokemon()
-    print(player1['name'])
-    print('vs')
-    player2 = get_pokemon()
-    print(player2['name'])
+    print('Welcome to the game!')
+    answer = input('Are you ready? yes/no ')
+    if answer == 'yes':
+        print("Let's go!")
     
-    category = input('Choose your game_stat (id, height or weight): ')
     
-    if category == "height":
-        if player1['height'] > player2['height']:
-            print("You win the round!")
-        elif player1['height'] < player2['height']:
-             print('You lose the round!')
-        elif player1['height'] == player2['height']:
-             print('You draw! Play again')
-  
-    elif category == 'weight':
-        if player1['weight'] > player2['weight']:
-            print('You win!')
-        elif player1['weight'] < player2['weight']:
-             print('You lose!')
-        elif player1['weight'] == player2['weight']:
-             print('You draw! Play again')
+        print('Your card is {}'.format(player1['name']))
+        print('Your stats are: ')
+        print('id: {}'.format(player1['id']))
+        print('height: {}'.format(player1['height']))
+        print('weight: {}'.format(player1['weight']))
+        player2 = get_pokemon()
+        print('You will be playing against {}'.format(player2['name']))
 
-    elif category == 'id':
-        if player1['id'] > player2['id']:
-         print('You win!')
-        elif player1['id'] < player2['id']:
-         print('You lose!')
-        elif player1['id'] == player2['id']:
-         print('You draw! Play again')         
+        category = input('Choose your game_stat (id, height or weight): ')
+
+        if category == "height":
+            if player1['height'] > player2['height']:
+                print("You win the round!")
+            elif player1['height'] < player2['height']:
+                 print('You lose the round!')
+            elif player1['height'] == player2['height']:
+                 print('You draw! Play again')
+
+        elif category == 'weight':
+            if player1['weight'] > player2['weight']:
+                print('You win!')
+            elif player1['weight'] < player2['weight']:
+                 print('You lose!')
+            elif player1['weight'] == player2['weight']:
+                 print('You draw! Play again')
+
+        elif category == 'id':
+            if player1['id'] > player2['id']:
+             print('You win!')
+            elif player1['id'] < player2['id']:
+             print('You lose!')
+            elif player1['id'] == player2['id']:
+             print('You draw! Play again')         
+            else:
+             print('error! try again') #do we need this?
         else:
-         print('error! try again') #do we need this?
-    else:
-     print('please select correct category option!')
+         print('please select correct category option!')
+    
+    if answer != 'yes':
+        print('try again')
     
 game_run()
+    
