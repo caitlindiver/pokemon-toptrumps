@@ -1,6 +1,7 @@
 import random
 import requests
 import json
+import time
 
 def get_pokemon():
     my_card = random.randint(1,151) #get a random number for my card
@@ -15,31 +16,49 @@ def get_pokemon():
         'height': pokemon['height'],
         'weight': pokemon['weight'],
         'abilities' : pokemon['abilities'],
-            }
+        'base experience' : pokemon['base_experience'],
+            } #return specific information to dictionary
 
 def game_run():
-    player1 = get_pokemon()
+    player1 = get_pokemon() #player1 = the function get_pokemon. this allows it to be repeated indefinitely
     print('Welcome to the game!')
+    time.sleep(0.5) #added in time delay to make it more fun
     answer = input('Are you ready? yes/no ')
     if answer == 'yes':
         print("Let's go!")
     
     
         print('Your card is {}'.format(player1['name']))
+        time.sleep(1)
         print('Your stats are: ')
+        time.sleep(1)
         print('id: {}'.format(player1['id']))
+        time.sleep(1)
         print('height: {}'.format(player1['height']))
+        time.sleep(1)
         print('weight: {}'.format(player1['weight']))
+        time.sleep(1)
         player2 = get_pokemon()
         print('You will be playing against {}'.format(player2['name']))
 
+        
+        
+        print("Your opponent's stats are: ")
+        time.sleep(1)
+        print('id: {}'.format(player2['id']))
+        time.sleep(1)
+        print('height: {}'.format(player2['height']))
+        time.sleep(1)
+        print('weight: {}'.format(player2['weight']))
+        time.sleep(1)
+       
         category = input('Choose your game_stat (id, height or weight): ')
 
         if category == "height":
             if player1['height'] > player2['height']:
-                print("You win the round!")
+                print("You win")
             elif player1['height'] < player2['height']:
-                 print('You lose the round!')
+                 print('You lose, sorry!')
             elif player1['height'] == player2['height']:
                  print('You draw! Play again')
 
@@ -47,7 +66,7 @@ def game_run():
             if player1['weight'] > player2['weight']:
                 print('You win!')
             elif player1['weight'] < player2['weight']:
-                 print('You lose!')
+                 print('You lose, sorry!')
             elif player1['weight'] == player2['weight']:
                  print('You draw! Play again')
 
@@ -55,16 +74,29 @@ def game_run():
             if player1['id'] > player2['id']:
              print('You win!')
             elif player1['id'] < player2['id']:
-             print('You lose!')
+             print('You lose, sorry!')
             elif player1['id'] == player2['id']:
-             print('You draw! Play again')         
-            else:
-             print('error! try again') #do we need this?
+             print('You draw! Play again')     
+            
+        
+        
+            
         else:
          print('please select correct category option!')
+         game_run() #run the game again for the correct category. 
+                    #would be better if it could reroute to the original question about categories though 
+                
+                
+        play_again = input("Do you want to play again? " )
+        if play_again == 'yes':
+            game_run()
+        else:
+            print('Thanks for playing! ')
     
     if answer != 'yes':
-        print('try again')
+        print('Please try again then')
+        time.sleep(1)
+        game_run()
     
 game_run()
     
