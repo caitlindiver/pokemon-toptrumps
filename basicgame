@@ -23,7 +23,7 @@ def game_run():
     player1 = get_pokemon() #player1 = the function get_pokemon. this allows it to be repeated indefinitely
     print('Welcome to the game!')
     time.sleep(0.5) #added in time delay to make it more fun
-    answer = input('Are you ready? yes/no ')
+    answer = input('Are you ready? yes/no ').lower()
     if answer == 'yes':
         print("Let's go!")
     
@@ -41,7 +41,7 @@ def game_run():
         player2 = get_pokemon()
         print('You will be playing against {}'.format(player2['name']))
 
-        
+        category = input('Choose your game_stat (id, height or weight): ')
         
         print("Your opponent's stats are: ")
         time.sleep(1)
@@ -52,7 +52,7 @@ def game_run():
         print('weight: {}'.format(player2['weight']))
         time.sleep(1)
        
-        category = input('Choose your game_stat (id, height or weight): ')
+        
 
         if category == "height":
             if player1['height'] > player2['height']:
@@ -85,16 +85,17 @@ def game_run():
          print('please select correct category option!')
          game_run() #run the game again for the correct category. 
                     #would be better if it could reroute to the original question about categories though 
+                    #problem for future Caitlin
                 
                 
-        play_again = input("Do you want to play again? " )
+        play_again = input("Do you want to play again? (yes/no) " ).lower()
         if play_again == 'yes':
-            game_run()
+            game_run() #starts the game over
         else:
-            print('Thanks for playing! ')
+            print('Thanks for playing! ') #stops the game
     
     if answer != 'yes':
-        print('Please try again then')
+        print('Please try again, then')
         time.sleep(1)
         game_run()
     
